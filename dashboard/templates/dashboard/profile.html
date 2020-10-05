@@ -1,0 +1,143 @@
+{% extends 'master.html' %}
+<Html>
+	{% block title %}Profile{% endblock %}
+{% block body %}
+    <div class="uk-container uk-container-small uk-padding">
+    	<center>
+    	<div class="uk-container uk-container-large uk-padding">
+    		<img data-src="{{ request.user.avatar.url }}" width="150vw" height="80vw" alt="Profile Pic" uk-img>
+    		<form class="toggle-class" method = 'POST' action = '/dashboard/image/' enctype="multipart/form-data" action="/user/profile/">
+    		{% csrf_token %}
+    		<div class="uk-margin" uk-margin>
+                <div uk-form-custom="target: true">
+                    <input name = 'profile' accept="image/*" requred type="file">
+                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
+                </div>
+                <button class="uk-button uk-button-default">Submit</button>
+            </div>
+        </form>
+    	</div>
+    	</center>
+    <h3>Profile</h3>
+    <form class="toggle-class" method = 'POST'>
+                {% csrf_token %}
+		<fieldset class="uk-fieldset">
+         <div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			<input class="uk-input uk-border-pill" required name = 'name' value ="{{ request.user.name }}" type="text">
+		    </div>
+		</div>
+		<div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			<input class="uk-input uk-border-pill" readonly name = 'email' value="{{ request.user.email }}" type="email">
+		    </div>
+		</div>
+		<h3>Address</h3>
+         <div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			<input class="uk-input uk-border-pill" required name = 'line1' value = "{{ line1 }}" placeholder="Line 1 " type="text">
+		   </div>
+		 </div>
+		<div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			<input class="uk-input uk-border-pill" name = 'line2' value = "{{ line2 }}" placeholder="Line 2 " type="text">
+		   </div>
+		</div>
+	    <div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			<input class="uk-input uk-border-pill" required name = 'city'value = "{{ city }}"  placeholder="City" type="text">
+		    </div>
+		</div>
+		<div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			<input class="uk-input uk-border-pill" required name = 'state' value = "{{ state }}" placeholder="State" type="text">
+		    </div>
+		</div>	
+        <div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			<input class="uk-input uk-border-pill" required name = 'country' value = "{{ country }}" placeholder="Country" type="text">
+		    </div>
+		</div>
+		<div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			   <input class="uk-input uk-border-pill" required name = 'pincode' value = "{{ pincode }}" placeholder="Pincode" type="text">
+		    </div>
+		</div>
+		 <hr></hr>
+		 <div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+		    <label>Date of Birth</label>
+			<input class="uk-input uk-border-pill" required name = 'dob' value = "{{ dob }}" placeholder="Date of Birth" type="date">
+		   </div>
+		 </div>
+		 <hr></hr>
+         <div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			<input class="uk-input uk-border-pill" required name = 'mobile' value="{{ request.user.mobile }}" type="text">
+		    </div>
+		 </div>
+		<div class="uk-margin">
+            <select vlaue = "{{ gender }}" name = 'gender' class="uk-select">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Prefer Not to Say</option>
+            </select>
+        </div>
+        <hr></hr>
+        <div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			   <input class="uk-input uk-border-pill" required name = 'height' placeholder="Height" value = "{{ height }}" type="text">
+		    </div>
+		</div>
+		<div class="uk-margin-small">
+		    <div class="uk-inline uk-dark uk-width-1-1">
+			   <input class="uk-input uk-border-pill" required value = "{{ weight }}" name = 'weight' placeholder="Weight" type="text">
+		    </div>
+		</div>
+		<hr></hr>
+		<div class="uk-margin">
+            <textarea class="uk-textarea" name = 'bio' rows="5" placeholder="Bio">{{ bio }}</textarea>
+        </div>
+		<div class="uk-margin-bottom">
+			<button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">UPDATE</button>
+		</div>
+	</fieldset>
+			</form>
+	
+    </div>
+    <div class="uk-container uk-container-small uk-padding">
+    	<h3>Change Password</h3>
+         <form class="toggle-class" method = 'POST' action = '/dashboard/newpass/'>
+                {% csrf_token %}
+		    <fieldset class="uk-fieldset">
+                <div class="uk-margin-small">
+		            <div class="uk-inline uk-dark uk-width-1-1">
+			            <input class="uk-input uk-border-pill" required name = 'currpass' placeholder = 'Current Password' type="password">
+		            </div>
+		        </div>
+		        <div class="uk-margin-small">
+		            <div class="uk-inline uk-dark uk-width-1-1">
+			            <input class="uk-input uk-border-pill" required name = 'newpass' placeholder="New Password" type="password">
+		            </div>
+		        </div>
+                <div class="uk-margin-small">
+		            <div class="uk-inline uk-dark uk-width-1-1">
+			            <input class="uk-input uk-border-pill" required name = 'confirmpass' placeholder="Confirm Password" type="password">
+		            </div>
+		        </div>
+		        <div class="uk-margin-bottom">
+			      <button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">UPDATE PASSWORD</button>
+                </div>
+            </fieldset>
+            <div>
+            	{% for i in messages %}
+            	     <h5 style = 'color:red'><center>{{ i }}</center></h5>
+            	{% endfor %}
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+
+
+</Html>

@@ -1,0 +1,11 @@
+{% extends 'master.html' %}
+<Html>
+	{% block title %}Dashboard{% endblock %}
+{% block body %}
+    <h3>{{ request.user.name }}</h3>
+    <a href = 'profile'>Goto Profile</a>
+{% endblock %}
+
+
+
+</Html>

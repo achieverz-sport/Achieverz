@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="robots" content="index">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'home/js/uikit.min.js' %}"></script>
+    <script src="{% static 'home/js/uikit-icons.min.js' %}"></script>
+    <link rel="apple-touch-icon" href="{% static 'home/img/favicon.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'home/img/favicon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'home/css/achieverz.min.css' %}"/>
+    {% endblock %}
+    {% block metatag %} {% endblock %}
+    <title>{% block title %} {% endblock %}</title>
+    <!-- CSS Code -->
+    {% block css %} {% endblock %}
+{% block body %}
+{% endblock %}
+    {% block javascript %} {% endblock %}
+</html>

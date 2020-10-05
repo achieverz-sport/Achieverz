@@ -1,0 +1,68 @@
+{% extends "master.html" %}
+{% load static %}
+<html>
+<title>{% block title %} Register {% endblock %}</title>
+{% block body %}
+<body class="uk-flex uk-flex-center uk-flex-middle uk-background-muted uk-height-viewport" data-uk-height-viewport>
+	
+    <div class="class="uk-position-bottom-center uk-position-small uk-visible@m uk-position-z-index">
+			
+          <div class="uk-text-center uk-margin" tabindex="0">
+		<img style = "height: 85px;width:85px;border-radius: 50%;background-color: #fff;" src="{%static "home/logo.jpg" %}" alt="Logo">
+	  </div>
+
+	   <!-- Register -->
+	   <form class="toggle-class" method = 'POST'>
+                {% csrf_token %}
+		<fieldset class="uk-fieldset">
+                <div class="uk-margin-small">
+		   <div class="uk-inline uk-dark uk-width-1-1">
+			<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+			<input class="uk-input uk-border-pill" required name = 'name' placeholder="Name" type="text">
+		   </div>
+		</div>
+                <div class="uk-margin-small">
+		   <div class="uk-inline uk-dark uk-width-1-1">
+			<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+			<input class="uk-input uk-border-pill" required name = 'email' placeholder="E-Mail" type="text">
+		   </div>
+		</div>
+                <div class="uk-margin-small">
+		   <div class="uk-inline uk-dark uk-width-1-1">
+			<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+			<input class="uk-input uk-border-pill" required name = 'mobile' placeholder="Mobile Number" type="text">
+		   </div>
+		</div>
+		<div class="uk-margin-small">
+			<div class="uk-inline uk-width-1-1">
+				<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+				<input class="uk-input uk-border-pill" required name = 'password' placeholder="Password" type="password">
+			</div>
+		</div>
+		<div class="uk-margin-small">
+			<div class="uk-inline uk-width-1-1">
+				<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+				<input class="uk-input uk-border-pill" required name = 'confirmpassword' placeholder="Confirm Password" type="password">
+			</div>
+		</div>
+		<div class="uk-margin-bottom">
+			<button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">REGISTER</button>
+		</div>
+                <div style="color:red;">
+                    {% for i in messages %}
+                    <center><h4>{{ i }}</h4></center>
+                    {% endfor %}
+                </div>
+	</fieldset>
+			</form>
+			
+			<!-- action buttons -->
+			<div>
+				<div class="uk-text-center">
+					<a href ='/login' class="uk-link-reset uk-text-small toggle-class">Already Registered Log In</a></div>
+    </div>
+</body>
+{% endblock %}
+</html>
+
+

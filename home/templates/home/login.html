@@ -1,0 +1,51 @@
+{% extends "master.html" %}
+{% load static %}
+<html>
+<title>{% block title %}Log In{% endblock %}</title>
+{% block body %}
+<body class="uk-flex uk-flex-center uk-flex-middle uk-background-muted uk-height-viewport" data-uk-height-viewport>
+	
+    <div class="uk-position-bottom-center uk-position-small uk-visible@m uk-position-z-index">
+			
+          <div class="uk-text-center uk-margin" tabindex="0">
+		<img style = "height: 85px;width:85px;border-radius: 50%;background-color: #fff;" src="{%static 'home/logo.jpg' %}" alt="Logo">
+	  </div>
+
+	   <!-- login -->
+	   <form class="toggle-class" method = 'POST'>
+                {% csrf_token %}
+		<fieldset class="uk-fieldset">
+		<div class="uk-margin-small">
+		   <div class="uk-inline uk-dark uk-width-1-1">
+			<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+			<input class="uk-input uk-border-pill" required name = 'email' placeholder="E-Mail" type="text">
+		   </div> 
+		</div>
+		<div class="uk-margin-small">
+			<div class="uk-inline uk-width-1-1">
+				<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+				<input class="uk-input uk-border-pill" required name = 'password' placeholder="Password" type="password">
+			</div>
+		</div>
+		
+		<div class="uk-margin-bottom">
+			<button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">LOG IN</button>
+		</div>
+                <div>
+                   {% for i in messages %}
+                      <center><h4>{{ i }}</h4></center>
+                   {% endfor %}
+                </div>
+	</fieldset>
+			</form>
+			
+			<!-- action buttons -->
+			
+				<div class="uk-text-center">
+					<a href ="{% url 'home.forgetpass' %}" class="uk-link-reset uk-text-small toggle-class">Forgot your password?</a>				</div>
+    </div>
+</body>
+{% endblock %}
+</html>
+
+

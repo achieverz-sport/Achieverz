@@ -1,0 +1,87 @@
+{% extends 'master.html' %}
+{% load static %}
+<html>
+   <title>{% block title %} Forget Password {% endblock %}</title>
+{% block body %}
+<body class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport">
+   {% if is_verified %}
+   {% if alert %}
+   <script>
+      window.alert('Password Changed Successfully')
+      window.location.href = "/login"
+   </script>
+   {% endif %}
+   <div class="uk-width-large uk-flex-center uk-padding-small uk-position-z-index" uk-scrollspy="cls: uk-animation-fade"
+      style="background-color:grey">
+      <form class="toggle-class" method='POST'>
+         {% csrf_token %}
+         <fieldset class="uk-fieldset">
+            <div class="uk-margin-small">
+               <div class="uk-inline uk-dark uk-width-1-1">
+                  <label style='color:yellow'>New Password</label>
+                  <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+                  <input class="uk-input uk-border-pill" required name='password' placeholder="New Password"
+                     type="password">
+               </div>
+            </div>
+            <div class="uk-margin-small">
+               <div class="uk-inline uk-dark uk-width-1-1">
+                  <label style='color:yellow'>Confirm Password</label>
+                  <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+                  <input class="uk-input uk-border-pill" required name='confirmpassword'
+                     placeholder="Confirm Password Password" type="password">
+               </div>
+            </div>
+            <div class="uk-margin-bottom">
+               <button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">Change
+                  Password</button>
+            </div>
+            <div>
+               {% for i in messages %}
+               <center>
+                  <h4 style='color:yellow'>{{ i }}</h4>
+               </center>
+               {% endfor %}
+            </div>
+         </fieldset>
+      </form>
+      <div>
+         <div class="uk-text-center" style='color:yellow'>
+            <a href='login' class="uk-link-reset uk-text-small toggle-class">Back To Login</a>
+         </div>
+      </div>
+      {% else %}
+      <div class="uk-width-large uk-flex-center uk-padding-small uk-position-z-index"
+         uk-scrollspy="cls: uk-animation-fade" style="background-color:grey">
+         <form class="toggle-class" method='POST'>
+            {% csrf_token %}
+            <fieldset class="uk-fieldset">
+               <div class="uk-margin-small">
+                  <div class="uk-inline uk-dark uk-width-1-1">
+                     <label style='color:yellow'>Enter Email Address</label>
+                     <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+                     <input class="uk-input uk-border-pill" required name='email' placeholder="E-Mail" type="email">
+                  </div>
+               </div>
+               <div class="uk-margin-bottom">
+                  <button type="submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">Send
+                     Mail</button>
+               </div>
+               <div>
+                  {% for i in messages %}
+                  <center>
+                     <h4 style='color:yellow'>{{ i }}</h4>
+                  </center>
+                  {% endfor %}
+               </div>
+            </fieldset>
+         </form>
+         <div>
+            <div class="uk-text-center" style='color:yellow'>
+               <a href='login' class="uk-link-reset uk-text-small toggle-class">Back To Login</a>
+            </div>
+         </div>
+         {% endif %}
+</body>
+{% endblock %}
+</html>
